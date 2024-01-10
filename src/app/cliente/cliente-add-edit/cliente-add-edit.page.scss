@@ -18,3 +18,7 @@ ion-input {
 small.error-message {
     color: var(--ion-color-danger);
 }
+
+.invalid	{
+    border-bottom: 1px	solid	#ff6153;
+}

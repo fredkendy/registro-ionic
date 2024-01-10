@@ -45,7 +45,9 @@ export class ClienteAddEditPage implements OnInit {
   }
 
   submit() {
-    console.log(this.cliente);
+    if (this.clienteForm.invalid ||	this.clienteForm.pending)	{
+      return;
+    }
   }
 
 }

@@ -5,15 +5,15 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <!-- invocará o submit quando ion-button for pressionado -->
-  <form [formGroup]="clienteForm" (submit)="submit()">
+  <!-- variavel de controle (identificar se o form ja teve uma submissao). invocará o submit quando ion-button for pressionado -->
+  <form #form="ngForm" [formGroup]="clienteForm" (submit)="submit()">
     <ion-item no-padding>
       <!-- 2 sintaxes: #inputExemplo ou ref-Exemplo (p/ entrada de dados) -->
       <ion-label position="floating">Nome:</ion-label>
       <!-- data binding: ligação com o modelo de dados (atribua a 'nome' o valor informado em input) -->
-      <ion-input formControlName="nome" type="text" placeholder="Informe o nome"></ion-input>
+      <ion-input formControlName="nome" type="text" placeholder="Informe o nome" [class.invalid]="!clienteForm.controls['nome'].valid	&& clienteForm.controls['nome'].touched"></ion-input>
       <!-- atribuir classe css; get atributo digitado, se tiver erro, exibir erro 'required', definido na classe -->
-      <small class="error-message" *ngIf="clienteForm.get('nome')?.errors?.['required'] || clienteForm.get('nome')?.errors?.['minlength'] || clienteForm.get('nome')?.errors?.['maxlength']">
+      <small class="error-message" *ngIf="clienteForm.get('nome')?.errors?.['required'] || clienteForm.get('nome')?.errors?.['minlength'] || clienteForm.get('nome')?.errors?.['maxlength']" && form.submitted>
 				Informe	o	nome (3	a	50 caracteres)
       </small>
     </ion-item>
@@ -21,15 +21,14 @@
       <ion-label position="floating">Email:</ion-label>
       <ion-input formControlName="email" type="email" placeholder="Informe o email"></ion-input>
       <small class="error-message"
-				*ngIf="clienteForm.get('email')?.errors?.['required'] || clienteForm.get('email')?.errors?.['email']">
+				*ngIf="clienteForm.get('email')?.errors?.['required'] || clienteForm.get('email')?.errors?.['email']" && form.submitted>
 				Informe	um email válido
       </small>
     </ion-item>
     <ion-item>
       <ion-label position="floating">Telefone:</ion-label>
       <ion-input formControlName="telefone" type="tel" placeholder="Informe o telefone"></ion-input>
-      <small class="error-message"
-				*ngIf="clienteForm.get('telefone')?.errors?.['required']">
+      <small	class="error-message" *ngIf="clienteForm.get('telefone')?.errors?.['required']	&&	(form.submitted	||	clienteForm.get('telefone')?.['touched'])">
 				Informe	o	telefone
       </small>
     </ion-item>
@@ -37,7 +36,7 @@
       <ion-label position="floating">Renda:</ion-label>
       <ion-input formControlName="renda" type="number" placeholder="Informe a renda" text-right></ion-input>
       <small class="error-message"
-				*ngIf="clienteForm.get('renda')?.errors?.['required'] || clienteForm.get('renda')?.errors?.['min']">
+				*ngIf="clienteForm.get('renda')?.errors?.['required'] || clienteForm.get('renda')?.errors?.['min']" && form.submitted>
 				Informe	uma	renda	positiva
       </small>
     </ion-item>
@@ -45,12 +44,12 @@
       <ion-label position="floating">Nascimento:</ion-label>
       <ion-input formControlName="nascimento" type="text" placeholder="Informe o nascimento"></ion-input>
       <small class="error-message"
-				*ngIf="clienteForm.get('nascimento')?.errors?.['required']">
+				*ngIf="clienteForm.get('nascimento')?.errors?.['required']" && form.submitted>
 				Informe	uma	data de	nascimento
       </small>
     </ion-item> 
     <!-- desabilitar botao se propriedade clienteForm n estiver válida -->
-    <ion-button	shape="round" color="primary" expand="block" padding type="submit" [disabled]="!clienteForm.valid">
+    <ion-button	shape="round" color="primary" expand="block" padding type="submit">
       Confirmar
     </ion-button>
   </form>
