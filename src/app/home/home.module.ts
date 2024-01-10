@@ -1,3 +1,5 @@
+//arquivo module: empacotar componente (Home) em um módulo para disponibilizar para a aplicação
+
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
@@ -14,6 +16,7 @@ import { HomePageRoutingModule } from './home-routing.module';
     IonicModule,
     HomePageRoutingModule
   ],
+  //quais componentes/classes são declarados no módulo
   declarations: [HomePage]
 })
 export class HomePageModule {}

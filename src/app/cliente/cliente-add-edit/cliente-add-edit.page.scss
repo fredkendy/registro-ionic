@@ -1,0 +1,16 @@
+// qdo ion-input receber o foco:
+// ion-input.has-focus	{
+//     background-color: rgb(250,	248, 246);
+//     border-radius: 10%;
+//     border: 1px solid black;
+// }
+
+ion-item {
+    --inner-padding-end: 3px;
+    --ion-text-color: blue;
+}
+
+ion-input {
+    //cor do texto do input (placeholder e texto digitado)
+    color: black;
+}
