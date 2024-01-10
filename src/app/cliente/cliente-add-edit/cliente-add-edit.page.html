@@ -5,28 +5,32 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-item no-padding>
-    <!-- 2 sintaxes: #inputExemplo ou ref-Exemplo (p/ entrada de dados) -->
-    <ion-label position="floating">Nome:</ion-label>
-    <ion-input #inputNome type="text" placeholder="Informe o nome"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label position="floating">Email:</ion-label>
-    <ion-input ref-inputEmail type="email" placeholder="Informe o email"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label position="floating">Telefone:</ion-label>
-    <ion-input type="tel" placeholder="Informe o telefone"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label position="floating">Renda:</ion-label>
-    <ion-input type="number" placeholder="Informe a renda" text-right></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label position="floating">Nascimento:</ion-label>
-    <ion-input type="text" placeholder="Informe o nascimento"></ion-input>
-  </ion-item>  
-  <ion-button	shape="round" color="primary" expand="block" padding (click)="submit()">
-    Confirmar
-  </ion-button>
+  <!-- invocará o submit quando ion-button for pressionado -->
+  <form (ngSubmit) = "submit()">
+    <ion-item no-padding>
+      <!-- 2 sintaxes: #inputExemplo ou ref-Exemplo (p/ entrada de dados) -->
+      <ion-label position="floating">Nome:</ion-label>
+      <!-- data binding: ligação com o modelo de dados (atribua a 'nome' o valor informado em input) -->
+      <ion-input [(ngModel)]="cliente.nome" name="nome" type="text" placeholder="Informe o nome"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Email:</ion-label>
+      <ion-input [(ngModel)]="cliente.email" name="email" type="email" placeholder="Informe o email"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Telefone:</ion-label>
+      <ion-input [(ngModel)]="cliente.telefone" name="telefone" type="tel" placeholder="Informe o telefone"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Renda:</ion-label>
+      <ion-input [(ngModel)]="cliente.renda" name="renda" type="number" placeholder="Informe a renda" text-right></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Nascimento:</ion-label>
+      <ion-input [(ngModel)]="cliente.nascimento" name="nascimento" type="text" placeholder="Informe o nascimento"></ion-input>
+    </ion-item>  
+    <ion-button	shape="round" color="primary" expand="block" padding type="submit">
+      Confirmar
+    </ion-button>
+  </form>
 </ion-content>
