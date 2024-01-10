@@ -28,6 +28,10 @@ export class ClienteAddEditPage implements OnInit {
     nascimento: ''
   };
 
+  //condicao para exibirmos ou nao, mensagens de erro
+  hasErrors = false;
+  errorsMessage!: string[];
+
   //FormGroup agrega valores dos FormControls (guardam valores informados pelo user)
   clienteForm!: FormGroup;
 
@@ -45,9 +49,15 @@ export class ClienteAddEditPage implements OnInit {
   }
 
   submit() {
-    if (this.clienteForm.invalid ||	this.clienteForm.pending)	{
-      return;
+    this.errorsMessage = [];
+    if (this.clienteForm.get('nome')?.hasError('required')) {
+      this.errorsMessage.push('Nome é obrigatório');
     }
+    if (this.clienteForm.get('email')?.hasError('required')) {
+      this.errorsMessage.push('Email é obrigatório');
+    }
+    //recebe valor booleano de acordo com a existência de erros na matriz
+    this.hasErrors = this.errorsMessage.length > 0;
   }
 
 }
