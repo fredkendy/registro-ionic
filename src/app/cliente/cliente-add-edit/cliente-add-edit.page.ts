@@ -1,4 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 interface Cliente {
   nome: string;
@@ -27,9 +28,20 @@ export class ClienteAddEditPage implements OnInit {
     nascimento: ''
   };
 
-  constructor() { }
+  //FormGroup agrega valores dos FormControls (guardam valores informados pelo user)
+  clienteForm!: FormGroup;
+
+  //visível na classe. Injeção de dependência do FormBuilder (permite usar recursos como FormGroup)
+  constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit() {
+    this.clienteForm = this.formBuilder.group({
+      nome: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(50)])],
+      email: ['', Validators.compose([Validators.required, Validators.email])],
+      telefone: ['', Validators.required],
+      renda: ['0', Validators.compose([Validators.required, Validators.min(0)])],
+      nascimento: ['', Validators.required]
+    });
   }
 
   submit() {

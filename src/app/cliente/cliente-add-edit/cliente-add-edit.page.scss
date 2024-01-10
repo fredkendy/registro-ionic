@@ -14,3 +14,7 @@ ion-input {
     //cor do texto do input (placeholder e texto digitado)
     color: black;
 }
+
+small.error-message {
+    color: var(--ion-color-danger);
+}
